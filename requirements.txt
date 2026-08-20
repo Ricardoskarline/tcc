@@ -1,0 +1,29 @@
+# =============================================================================
+# Dependências do Middleware de Governança - TCC MBA USP/Esalq
+# =============================================================================
+
+# Framework Web e API
+fastapi==0.115.0
+starlette==0.38.6
+uvicorn[standard]==0.32.0
+pydantic==2.9.2
+pydantic-settings==2.6.1
+
+# Frontend Web (Interface de Chat)
+streamlit==1.39.0
+requests>=2.31.0
+
+# Configuração e Variáveis de Ambiente
+python-dotenv==1.0.1
+
+# APIs de Inteligência Artificial e LLMs
+openai==1.54.5
+google-generativeai==0.8.3
+
+# Governança de Dados, Análise AST e Resiliência HTTP
+sqlparse==0.5.2
+tenacity==9.0.0
+
+# Desenvolvimento e Testes (Opcional)
+# pytest==8.3.3
+# httpx==0.27.2

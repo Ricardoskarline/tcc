@@ -1,0 +1,58 @@
+# =============================================================================
+# Docker Compose - Middleware de Governança TCC MBA USP/Esalq
+# =============================================================================
+version: '3.8'
+
+services:
+  middleware:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    container_name: governance-middleware
+    
+    # Mapeamento de portas
+    ports:
+      - "8089:8089"
+    
+    # Variáveis de ambiente (sobrescrevem valores do .env)
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8089
+      - LOG_LEVEL=INFO
+      - MAX_INPUT_LENGTH=10000
+    
+    # Arquivo .env (descomente e configure para usar APIs reais)
+    # env_file:
+    #   - .env
+    
+    # Volume para logs persistentes
+    volumes:
+      - ./logs:/app/logs
+    
+    # Política de restart
+    restart: unless-stopped
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8089/')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    
+    # Limites de recursos
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+# Configuração de rede
+networks:
+  default:
+    name: governance-network
+    driver: bridge

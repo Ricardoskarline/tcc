@@ -1,0 +1,11 @@
+# Ambientes Virtuais
+venv/
+env/
+
+# Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Variáveis de Ambiente (Segurança)
+.env
